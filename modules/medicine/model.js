@@ -3,12 +3,12 @@ const pool = require("../../services/db");
 
 async function addMedicine({ name, description, type, manufacturer }) {
     let result = await pool.query(`INSERT INTO ${DatabaseTables.medicine} (name, description, type, manufacturer) VALUES ('${name}', '${description}', '${type}', '${manufacturer}') RETURNING *`);
-    return result.rows[0];
+    return result.rows.first;
 }
 
 async function getMedicine(id) {
     let result = await pool.query(`SELECT * FROM ${DatabaseTables.medicine} WHERE id='${id}'`);
-    return result.rows?.[0];
+    return result.rows?.first;
 }
 
 async function getMedicines({ name = undefined, description = undefined, type = undefined, manufacturer = undefined }) {

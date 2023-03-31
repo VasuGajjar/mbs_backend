@@ -12,10 +12,10 @@ const validateGetMedicine = [
 ];
 
 const validateGetMedicines = [
-    body('name').optional(),
-    body('description').optional(),
-    body('type').optional(),
-    body('manufacturer').optional(),
+    query('name').optional(),
+    query('description').optional(),
+    query('type').optional(),
+    query('manufacturer').optional(),
 ];
 
 module.exports = {

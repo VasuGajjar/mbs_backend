@@ -19,7 +19,7 @@ async function addMedicine(req, res) {
 
 async function getMedicine(req, res) {
     try {
-        let medicine = await MedicineModel.getMedicine(req.body.id);
+        let medicine = await MedicineModel.getMedicine(req.params.id);
 
         if (medicine) {
             res.status(200).json({
@@ -27,10 +27,7 @@ async function getMedicine(req, res) {
                 medicine
             });
         } else {
-            res.status(404).json({
-                status: false,
-                message: 'No medicine found'
-            });
+            throw { status_code: 404, message: 'No medicine found' };
         }
     } catch (error) {
         console.log('MedicineController.getMedicine.error: ', error);
@@ -43,9 +40,9 @@ async function getMedicine(req, res) {
 
 async function getMedicines(req, res) {
     try {
-        let medicines = await MedicineModel.getMedicines(req.body);
+        let medicines = await MedicineModel.getMedicines(req.query);
 
-        if(medicines.length > 0) {
+        if(!medicines.isEmpty) {
             res.status(200).json({
                 status: true,
                 medicines
