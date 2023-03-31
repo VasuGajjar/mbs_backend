@@ -8,4 +8,22 @@ const pool = new Pool({
     database: process.env.DB_NAME,
 });
 
+/**
+ * This function provides helper functions for
+ * postgres query parameter manipulation
+ * @param {Array} params
+ */
+const paramBuilder = (params = []) => {
+    let count = params.length;
+
+    return {
+        add: (value) => {
+            params[count++] = value;
+            return `$${count}`;
+        },
+        get: () => params,
+    };
+}
+
 module.exports = pool;
+module.exports.ParamBuilder = paramBuilder;

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const AuthModel = require('../models/auth');
-const { UserType } = require("../common/const");
+const AuthModel = require('./model');
+const { UserType } = require("../../common/const");
 
 async function userSignup(req, res) {
     try {
@@ -41,7 +41,6 @@ async function userSignup(req, res) {
     }
 }
 
-//TODO complete login api
 async function userLogin(req, res) {
     try {
         let { user_type, username, password } = req.body;

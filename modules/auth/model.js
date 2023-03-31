@@ -1,5 +1,5 @@
-const { DatabaseTables } = require("../common/const");
-const pool = require("../services/db");
+const { DatabaseTables } = require("../../common/const");
+const pool = require("../../services/db");
 
 async function checkUsernameExist(userType, username) {
     let result = await pool.query(`SELECT * FROM ${DatabaseTables.loginUser} WHERE user_type='${userType}' AND username='${username}'`)
@@ -7,14 +7,12 @@ async function checkUsernameExist(userType, username) {
 }
 
 async function createDoctor({ first_name, last_name, email, phone, specialization, license_no }) {
-    await pool.query(`INSERT INTO ${DatabaseTables.doctor} (first_name, last_name, email, phone, specialization, license_number) VALUES ('${first_name}', '${last_name}', '${email}', '${phone}', '${specialization}', '${license_no}')`);
-    let result = await pool.query(`SELECT id FROM ${DatabaseTables.doctor} WHERE first_name='${first_name}' AND last_name='${last_name}' AND email='${email}' AND phone='${phone}' AND specialization='${specialization}' AND license_number='${license_no}'`);
+    let result = await pool.query(`INSERT INTO ${DatabaseTables.doctor} (first_name, last_name, email, phone, specialization, license_number) VALUES ('${first_name}', '${last_name}', '${email}', '${phone}', '${specialization}', '${license_no}') RETURNING *`);
     return result.rows[0].id;
 }
 
 async function createPharmacy({ name, address, email, phone, license_no }) {
-    await pool.query(`INSERT INTO ${DatabaseTables.pharmacy} (name, address, email, phone, license_number) VALUES ('${name}', '${address}', '${email}', '${phone}', '${license_no}')`);
-    let result = await pool.query(`SELECT id FROM ${DatabaseTables.pharmacy} WHERE first_name='${first_name}' AND last_name='${last_name}' AND email='${email}' AND phone='${phone}' AND specialization='${specialization}' AND license_number='${license_no}'`);
+    let result = await pool.query(`INSERT INTO ${DatabaseTables.pharmacy} (name, address, email, phone, license_number) VALUES ('${name}', '${address}', '${email}', '${phone}', '${license_no}') RETURNING *`);
     return result.rows[0].id;
 }
 

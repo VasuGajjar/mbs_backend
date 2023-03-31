@@ -5,10 +5,8 @@ const jwtValidator = require('./middlewares/jwt');
 const app = express();
 
 app.use(express.json());
-app.use("/api", require("./routes/auth"));
-app.get("/test", jwtValidator, function (req, res) {
-    res.status(200).json({ status: true, message: 'hellow', user: req.user });
-})
+app.use("/api/auth", require("./modules/auth/router"));
+app.use('/api/medicine', jwtValidator, require("./modules/medicine/router"));
 
 app.listen(
     process.env.SERVER_PORT,

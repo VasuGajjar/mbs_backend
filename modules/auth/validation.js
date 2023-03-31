@@ -1,5 +1,5 @@
 const { oneOf, check, param, query, body, header } = require('express-validator');
-const { UserType } = require('../common/const');
+const { UserType } = require('../../common/const');
 
 const validateSignin = [
     body('user_type').exists().bail().isIn(UserType),
