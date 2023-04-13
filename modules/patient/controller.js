@@ -21,10 +21,17 @@ async function getPatient(req, res) {
     try {
         let patient = await PatientModel.getPatient(req.params.id);
 
-        res.status(200).json({
-            status: true,
-            patient
-        });
+        if(patient) {
+            res.status(200).json({
+                status: true,
+                patient
+            });
+        } else {
+            res.status(204).json({
+                status: true,
+                message: 'No patient found',
+            });
+        }
     } catch (error) {
         console.log('PatientController.getPatient.error: ', error);
         res.status(error.status_code ?? 500).json({

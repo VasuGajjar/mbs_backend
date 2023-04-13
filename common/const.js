@@ -4,9 +4,9 @@ const UserType = {
 }
 
 const GenderType = {
-    male: 'm',
-    female: 'f',
-    other: 'o',
+    male: 'M',
+    female: 'F',
+    other: 'O',
 }
 
 const MedicineType = {
@@ -33,8 +33,11 @@ const DatabaseTables = {
     loginUser: 'login_user',
 };
 
+const STORAGE_PATH = process.env.STORAGE_PATH;
+
 module.exports = {
     UserType,
     DatabaseTables,
     GenderType,
+    STORAGE_PATH
 }

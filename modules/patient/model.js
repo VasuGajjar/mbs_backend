@@ -6,8 +6,8 @@ async function addPatient({ first_name, last_name, address, email, phone, date_o
     return result.rows.first;
 }
 
-async function getPatient(id) {
-    let result = await pool.query(`SELECT * FROM ${DatabaseTables.patient} WHERE id='${id}'`);
+async function getPatient(id, select = '*') {
+    let result = await pool.query(`SELECT ${select} FROM ${DatabaseTables.patient} WHERE id='${id}'`);
     return result.rows.first;
 }
 

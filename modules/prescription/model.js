@@ -30,10 +30,16 @@ async function getMedication(prescription_id, medicine_id) {
     return result.rows.first;
 }
 
+async function getMedications(prescription_id) {
+    let result = await pool.query(`SELECT * FROM ${DatabaseTables.medication} WHERE prescription_id='${prescription_id}'`);
+    return result.rows;
+}
+
 module.exports = {
     addPrescription,
     getPrescription,
     getPrescriptions,
     addMedication,
-    getMedication
+    getMedication,
+    getMedications
 };

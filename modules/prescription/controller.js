@@ -1,8 +1,14 @@
 const PrescriptionModel = require('./model');
+const PatientModel = require('../patient/model');
+const DoctorModel = require('../doctor/model');
+const MedicineModel = require('../medicine/model');
+
+const PdfHelper = require('../../services/pdf');
 
 async function addPrescription(req, res) {
     try {
-        let { prescription, medications } = req.body;
+        let prescription = req.body.prescription;
+        let medications = prescription.medications;
 
         let result = await PrescriptionModel.addPrescription(prescription);
 
@@ -30,10 +36,27 @@ async function getPrescription(req, res) {
         let prescription = await PrescriptionModel.getPrescription(req.params.id);
 
         if (prescription) {
-            res.status(200).json({
-                status: true,
-                prescription
-            });
+            prescription.doctor = await DoctorModel.getDoctor(prescription.doctor_id, 'first_name, last_name, email, phone, specialization');
+            prescription.patient = await PatientModel.getPatient(prescription.patient_id, 'first_name, last_name, email, phone')
+            prescription.medications = await PrescriptionModel.getMedications(prescription.id);
+
+            for (let medication of prescription.medications) {
+                medication.medicine = await MedicineModel.getMedicine(medication.medicine_id, 'name, description, type, manufacturer');
+            }
+
+            if (req.headers.accept == 'application/json') {
+                res.status(200).json({
+                    status: true,
+                    prescription
+                });
+            } else if (req.headers.accept == 'application/pdf') {
+                res.status(200).sendFile(await PdfHelper.createPrescriptionPDF(prescription));
+            } else {
+                res.status(403).json({
+                    status: false,
+                    message: 'Invalid accept header'
+                });
+            }
         } else {
             throw { status_code: 404, message: 'No prescription found' };
         }

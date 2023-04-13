@@ -15,6 +15,7 @@ const validateAddPrescription = [
 
 const validateGetPrescription = [
     param('id').exists().notEmpty(),
+    header('Accept').optional().isIn(['application/json', 'application/pdf']).default('application/json'),
 ];
 
 const validateGetPrescriptions = [
