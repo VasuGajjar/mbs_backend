@@ -17,7 +17,6 @@ async function updateQuantityPrice(id, quantity = null, price = null) {
 async function getMedicineQuantityPrice(pharmacy_id, medicine_id = null) {
     let query = `SELECT pm.id, medicine_id, name, description, manufacturer, type, quantity, price FROM ${DatabaseTables.pharmacyMedicine} AS pm INNER JOIN ${DatabaseTables.medicine} AS m ON pm.medicine_id=m.id WHERE pharmacy_id='${pharmacy_id}'`;
     if (medicine_id) query += ` AND medicine_id='${medicine_id}';`;
-    console.log(query);
     let result = await pool.query(query);
     return result.rows;
 }

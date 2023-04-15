@@ -4,6 +4,7 @@ const DoctorModel = require('../doctor/model');
 const MedicineModel = require('../medicine/model');
 
 const PdfHelper = require('../../services/pdf');
+const EmailHelper = require('../../services/email');
 
 async function addPrescription(req, res) {
     try {
@@ -57,6 +58,38 @@ async function getPrescription(req, res) {
                     message: 'Invalid accept header'
                 });
             }
+        } else {
+            throw { status_code: 404, message: 'No prescription found' };
+        }
+    } catch (error) {
+        console.log('PrescriptionController.getPrescription.error: ', error);
+        res.status(error.status_code ?? 500).json({
+            status: false,
+            message: error.message ?? 'Something went wrong'
+        });
+    }
+}
+
+async function emailPrescription(req, res) {
+    try {
+        let prescription = await PrescriptionModel.getPrescription(req.params.id);
+
+        if (prescription) {
+            prescription.doctor = await DoctorModel.getDoctor(prescription.doctor_id, 'first_name, last_name, email, phone, specialization');
+            prescription.patient = await PatientModel.getPatient(prescription.patient_id, 'first_name, last_name, email, phone')
+            prescription.medications = await PrescriptionModel.getMedications(prescription.id);
+
+            for (let medication of prescription.medications) {
+                medication.medicine = await MedicineModel.getMedicine(medication.medicine_id, 'name, description, type, manufacturer');
+            }
+
+            let info = await EmailHelper.emailPrescriptionAsPdf(prescription);
+            console.log(info); //TODO remove this comment
+
+            res.status(200).json({
+                status: true,
+                message: 'Email sent successfully'
+            });
         } else {
             throw { status_code: 404, message: 'No prescription found' };
         }
@@ -131,6 +164,7 @@ async function getMedication(req, res) {
 module.exports = {
     addPrescription,
     getPrescription,
+    emailPrescription,
     getPrescriptions,
     addMedication,
     getMedication

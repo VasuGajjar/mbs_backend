@@ -8,6 +8,7 @@ const controller = require('./controller');
 router.post("/", validation.validateAddPrescription, validator, controller.addPrescription);
 router.get("/:id", validation.validateGetPrescription, validator, controller.getPrescription);
 router.get("/", validation.validateGetPrescriptions, validator, controller.getPrescriptions);
+router.get("/email/:id", validation.validateEmailPrescription, validator, controller.emailPrescription);
 
 router.post("/:prescription_id/medication", validation.validateAddMedication, validator, controller.addMedication);
 router.get("/:prescription_id/medication/:medicine_id", validation.validateGetMedication, validator, controller.getMedication);

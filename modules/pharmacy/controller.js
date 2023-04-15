@@ -105,7 +105,7 @@ async function checkPrescription(req, res) {
                     });
                 }
             }
-            console.log(medicine_list);
+            
             res.status(200).json({
                 status: true,
                 data: {

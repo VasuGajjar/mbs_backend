@@ -13,7 +13,6 @@ async function createDoctor({ first_name, last_name, email, phone, specializatio
 
 async function createPharmacy({ name, address, email, phone, license_no }) {
     let result = await pool.query(`INSERT INTO ${DatabaseTables.pharmacy} (name, address, email, phone, license_number) VALUES ('${name}', '${address}', '${email}', '${phone}', '${license_no}') RETURNING *`);
-    console.log(result);
     return result.rows.first?.id;
 }
 

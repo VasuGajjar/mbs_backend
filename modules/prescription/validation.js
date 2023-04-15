@@ -18,6 +18,10 @@ const validateGetPrescription = [
     header('Accept').optional().isIn(['application/json', 'application/pdf']).default('application/json'),
 ];
 
+const validateEmailPrescription = [
+    param('id').exists().notEmpty(),
+];
+
 const validateGetPrescriptions = [
     query('doctor_id').optional().isInt(),
     query('patient_id').optional().isInt(),
@@ -42,6 +46,7 @@ const validateGetMedication = [
 module.exports = {
     validateAddPrescription,
     validateGetPrescription,
+    validateEmailPrescription,
     validateGetPrescriptions,
     validateAddMedication,
     validateGetMedication

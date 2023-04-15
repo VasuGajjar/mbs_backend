@@ -6,7 +6,6 @@ const { UserType } = require("../../common/const");
 async function userSignup(req, res) {
     try {
         let { user_type, doctor, pharmacy, credential } = req.body;
-        console.log(pharmacy)
 
         // Check if username already exists or not
         let userCount = await AuthModel.checkUsernameExist(user_type, credential.username);
