@@ -31,6 +31,7 @@ const DatabaseTables = {
     prescription: 'prescription',
     medication: 'medication',
     loginUser: 'login_user',
+    pharmacyMedicine: 'pharmacy_medicines',
 };
 
 const STORAGE_PATH = process.env.STORAGE_PATH;
