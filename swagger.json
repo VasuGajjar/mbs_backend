@@ -1,0 +1,2477 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Medical Billing System",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "Authorization": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      }
+    },
+    "security": [
+      {
+        "Authorization": []
+      }
+    ],
+    "tags": [
+      {
+        "name": "Auth"
+      },
+      {
+        "name": "Medicine"
+      },
+      {
+        "name": "Patient"
+      },
+      {
+        "name": "Prescription"
+      },
+      {
+        "name": "Pharmacy"
+      }
+    ],
+    "paths": {
+      "/auth/login": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "user_type": "pharmacy",
+                    "username": "hari_om",
+                    "password": "Hari@0m"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "392"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"188-ICU8g3YHNXYq++KmSBT5HfHmik8\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 16:42:39 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "examples": {
+                    "example-0": {
+                      "summary": "doctor login",
+                      "value": {
+                        "status": true,
+                        "user": {
+                          "id": 3,
+                          "user_type": "doctor",
+                          "user_id": 7,
+                          "username": "joey",
+                          "last_login": "2023-03-31T16:42:39.221Z"
+                        },
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcl90eXBlIjoiZG9jdG9yIiwidXNlcl9pZCI6NywidXNlcm5hbWUiOiJqb2V5IiwibGFzdF9sb2dpbiI6IjIwMjMtMDMtMzFUMTY6NDI6MzkuMjIxWiIsImlhdCI6MTY4MDI4MDk1OSwiZXhwIjoxNjgwMzY3MzU5fQ.L0aZ_vOy84EEHKOBzBDG87PdWRoZ64ahWQhijbhhfLs"
+                      }
+                    },
+                    "example-1": {
+                      "summary": "pharmacy login",
+                      "value": {
+                        "status": true,
+                        "user": {
+                          "id": 5,
+                          "user_type": "pharmacy",
+                          "user_id": 6,
+                          "username": "hari_om",
+                          "last_login": "2023-03-31T17:22:34.129Z"
+                        },
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcl90eXBlIjoicGhhcm1hY3kiLCJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Imhhcmlfb20iLCJsYXN0X2xvZ2luIjoiMjAyMy0wMy0zMVQxNzoyMjozNC4xMjlaIiwiaWF0IjoxNjgwMjgzMzU0LCJleHAiOjE2ODAzNjk3NTR9.PzqUtuJhfVuPxPp2_ws2FgGyO9UbmPq9PGqCmX_veCM"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "236"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"ec-M8VXw6GfjqNLwlpHEOUo1iYKals\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 16:36:38 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid input",
+                    "error": [
+                      {
+                        "msg": "Invalid value",
+                        "param": "user_type",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "username",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "password",
+                        "location": "body"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "57"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"39-oRgYeSEtVoU9dDnDoW5PuSYh8jc\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 16:39:59 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid username or password"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/auth/signin": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Register",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "user_type": "doctor",
+                    "doctor": {
+                      "first_name": "David",
+                      "last_name": "Wang",
+                      "email": "david@mailinator.com",
+                      "phone": "7777777777",
+                      "specialization": "Neurology",
+                      "license_no": "1111114422"
+                    },
+                    "credential": {
+                      "username": "david",
+                      "password": "David@123"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "403"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"193-wQvgx4Y+igmJaFjBsKzt5KOPU0g\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 17:20:42 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "examples": {
+                    "example-0": {
+                      "summary": "pharmacy",
+                      "value": {
+                        "status": true,
+                        "user": {
+                          "id": 5,
+                          "user_type": "pharmacy",
+                          "user_id": 6,
+                          "username": "hari_om",
+                          "last_login": "2023-03-31T17:20:42.855Z"
+                        },
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcl90eXBlIjoicGhhcm1hY3kiLCJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Imhhcmlfb20iLCJsYXN0X2xvZ2luIjoiMjAyMy0wMy0zMVQxNzoyMDo0Mi44NTVaIiwiaWF0IjoxNjgwMjgzMjQyLCJleHAiOjE2ODAzNjk2NDJ9.t7ltr7SCa9EIC1nqlMF0UKtUz3wLlVMh3_kUpma3NdA"
+                      }
+                    },
+                    "example-1": {
+                      "summary": "doctor",
+                      "value": {
+                        "status": true,
+                        "user": {
+                          "id": 6,
+                          "user_type": "doctor",
+                          "user_id": 9,
+                          "username": "joshi",
+                          "last_login": "2023-03-31T17:27:42.698Z"
+                        },
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcl90eXBlIjoiZG9jdG9yIiwidXNlcl9pZCI6OSwidXNlcm5hbWUiOiJqb3NoaSIsImxhc3RfbG9naW4iOiIyMDIzLTAzLTMxVDE3OjI3OjQyLjY5OFoiLCJpYXQiOjE2ODAyODM2NjIsImV4cCI6MTY4MDM3MDA2Mn0.WTWfUQ8PzFxrI303sef4QTJhOrQmfxX4pmf_QtaG97U"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "258"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"102-if2En4OYacrEAzIaJu9bAWJZr7o\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 16:37:32 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "examples": {
+                    "example-0": {
+                      "summary": "validation error",
+                      "value": {
+                        "status": false,
+                        "message": "Invalid input",
+                        "error": [
+                          {
+                            "msg": "Invalid value",
+                            "param": "user_type",
+                            "location": "body"
+                          },
+                          {
+                            "msg": "Invalid value",
+                            "param": "credential.username",
+                            "location": "body"
+                          },
+                          {
+                            "msg": "Invalid value",
+                            "param": "credential.password",
+                            "location": "body"
+                          }
+                        ]
+                      }
+                    },
+                    "example-1": {
+                      "summary": "username taken",
+                      "value": {
+                        "status": false,
+                        "message": "Username already exist"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/medicine/": {
+        "post": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Add",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "name": "Dolo 650",
+                    "description": "TEst dummy description",
+                    "type": "tablet",
+                    "manufacturer": "Paracetamol"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "137"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"89-6cxhMMLBSY5+Oyp3HO0bMUjMacg\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 17:36:45 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "medicine": {
+                      "id": 1,
+                      "name": "Dolo 650",
+                      "description": "TEst dummy description",
+                      "type": "tablet",
+                      "manufacturer": "Paracetamol"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "538"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"21a-mHVBKC6x0vKFcSLx4okOES6Q3m4\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 17:31:04 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid input",
+                    "error": [
+                      {
+                        "msg": "Invalid value",
+                        "param": "name",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "name",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "description",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "description",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "type",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "type",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "manufacturer",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "manufacturer",
+                        "location": "body"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "42"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"2a-/51+g+dOd6mF6U++yQYQ/nFaxc8\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 17:30:19 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid token"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/medicine/:id": {
+        "get": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Get",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "137"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"89-6cxhMMLBSY5+Oyp3HO0bMUjMacg\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 17:38:37 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "medicine": {
+                      "id": 1,
+                      "name": "Dolo 650",
+                      "description": "TEst dummy description",
+                      "type": "tablet",
+                      "manufacturer": "Paracetamol"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "46"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"2e-VhZiaeFR1uorA6i3MvLTqbsa6Z4\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Fri, 31 Mar 2023 17:38:49 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "No medicine found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/medicine": {
+        "get": {
+          "tags": [
+            "Medicine"
+          ],
+          "summary": "Search",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "140"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"8c-bG9f1H6l31PGnmy1eRB3ZcW51p0\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Wed, 12 Apr 2023 16:32:21 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "examples": {
+                    "example-0": {
+                      "summary": "query",
+                      "value": {
+                        "status": true,
+                        "medicines": [
+                          {
+                            "id": 1,
+                            "name": "Dolo 650",
+                            "description": "TEst dummy description",
+                            "type": "tablet",
+                            "manufacturer": "Paracetamol"
+                          }
+                        ]
+                      }
+                    },
+                    "example-1": {
+                      "summary": "all",
+                      "value": {
+                        "status": true,
+                        "medicines": [
+                          {
+                            "id": 1,
+                            "name": "Dolo 650",
+                            "description": "TEst dummy description",
+                            "type": "tablet",
+                            "manufacturer": "Paracetamol"
+                          },
+                          {
+                            "id": 2,
+                            "name": "Aspirin",
+                            "description": "Pain reliever and fever reducer",
+                            "type": "tablet",
+                            "manufacturer": "Bayer"
+                          },
+                          {
+                            "id": 3,
+                            "name": "Ibuprofen",
+                            "description": "Nonsteroidal anti-inflammatory drug",
+                            "type": "tablet",
+                            "manufacturer": "Advil"
+                          },
+                          {
+                            "id": 4,
+                            "name": "Lisinopril",
+                            "description": "Angiotensin-converting enzyme inhibitor",
+                            "type": "tablet",
+                            "manufacturer": "Prinivil"
+                          },
+                          {
+                            "id": 5,
+                            "name": "Amlodipine",
+                            "description": "Calcium channel blocker",
+                            "type": "tablet",
+                            "manufacturer": "Norvasc"
+                          },
+                          {
+                            "id": 6,
+                            "name": "Metformin",
+                            "description": "Oral diabetes medicine",
+                            "type": "tablet",
+                            "manufacturer": "Glucophage"
+                          },
+                          {
+                            "id": 7,
+                            "name": "Levothyroxine",
+                            "description": "Thyroid hormone replacement",
+                            "type": "tablet",
+                            "manufacturer": "Synthroid"
+                          },
+                          {
+                            "id": 8,
+                            "name": "Atorvastatin",
+                            "description": "Statins for reducing cholesterol",
+                            "type": "tablet",
+                            "manufacturer": "Lipitor"
+                          },
+                          {
+                            "id": 9,
+                            "name": "Loratadine",
+                            "description": "Antihistamine for allergies",
+                            "type": "tablet",
+                            "manufacturer": "Claritin"
+                          },
+                          {
+                            "id": 10,
+                            "name": "Fluoxetine",
+                            "description": "Selective serotonin reuptake inhibitor",
+                            "type": "capsule",
+                            "manufacturer": "Prozac"
+                          },
+                          {
+                            "id": 11,
+                            "name": "Omeprazole",
+                            "description": "Proton-pump inhibitor for acid reflux",
+                            "type": "capsule",
+                            "manufacturer": "Prilosec"
+                          },
+                          {
+                            "id": 12,
+                            "name": "Albuterol",
+                            "description": "Bronchodilator for asthma",
+                            "type": "inhaler",
+                            "manufacturer": "ProAir"
+                          },
+                          {
+                            "id": 13,
+                            "name": "Budesonide",
+                            "description": "Corticosteroid for asthma",
+                            "type": "inhaler",
+                            "manufacturer": "Pulmicort"
+                          },
+                          {
+                            "id": 14,
+                            "name": "Naproxen",
+                            "description": "Nonsteroidal anti-inflammatory drug",
+                            "type": "tablet",
+                            "manufacturer": "Aleve"
+                          },
+                          {
+                            "id": 15,
+                            "name": "Losartan",
+                            "description": "Angiotensin II receptor blocker",
+                            "type": "tablet",
+                            "manufacturer": "Cozaar"
+                          },
+                          {
+                            "id": 16,
+                            "name": "Warfarin",
+                            "description": "Blood thinner",
+                            "type": "tablet",
+                            "manufacturer": "Coumadin"
+                          },
+                          {
+                            "id": 17,
+                            "name": "Citalopram",
+                            "description": "Selective serotonin reuptake inhibitor",
+                            "type": "tablet",
+                            "manufacturer": "Celexa"
+                          },
+                          {
+                            "id": 18,
+                            "name": "Pregabalin",
+                            "description": "Anticonvulsant and anxiety medication",
+                            "type": "capsule",
+                            "manufacturer": "Lyrica"
+                          },
+                          {
+                            "id": 19,
+                            "name": "Venlafaxine",
+                            "description": "Serotonin-norepinephrine reuptake inhibitor",
+                            "type": "tablet",
+                            "manufacturer": "Effexor"
+                          },
+                          {
+                            "id": 20,
+                            "name": "Lamotrigine",
+                            "description": "Anticonvulsant and mood stabilizer",
+                            "type": "tablet",
+                            "manufacturer": "Lamictal"
+                          },
+                          {
+                            "id": 21,
+                            "name": "Furosemide",
+                            "description": "Loop diuretic for hypertension",
+                            "type": "tablet",
+                            "manufacturer": "Lasix"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/patient/": {
+        "post": {
+          "tags": [
+            "Patient"
+          ],
+          "summary": "Add Patient",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "first_name": "Harsh",
+                    "last_name": "Thakkar",
+                    "address": "69 Elm St",
+                    "email": "harsh@mailinator.com",
+                    "phone": "9825982500",
+                    "date_of_birth": "2002-01-14",
+                    "gender": "M"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "207"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"cf-fdqjkN1f1vSk+FwOTn51u3pXIjs\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Wed, 12 Apr 2023 17:35:49 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "patient": {
+                      "id": 6,
+                      "first_name": "Harsh",
+                      "last_name": "Thakkar",
+                      "address": "69 Elm St",
+                      "email": "harsh@mailinator.com",
+                      "phone": "9825982500",
+                      "date_of_birth": "2002-01-13T18:30:00.000Z",
+                      "gender": "M"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "965"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"3c5-9UzZ02V54Gyst6BqqI2WtQv0xus\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Wed, 12 Apr 2023 16:40:16 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid input",
+                    "error": [
+                      {
+                        "msg": "Invalid value",
+                        "param": "first_name",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "first_name",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "last_name",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "last_name",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "address",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "address",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value(s)",
+                        "param": "_error",
+                        "nestedErrors": [
+                          {
+                            "msg": "Invalid value",
+                            "param": "email",
+                            "location": "body"
+                          },
+                          {
+                            "msg": "Invalid value",
+                            "param": "email",
+                            "location": "body"
+                          },
+                          {
+                            "msg": "Invalid value",
+                            "param": "phone",
+                            "location": "body"
+                          },
+                          {
+                            "msg": "Invalid value",
+                            "param": "phone",
+                            "location": "body"
+                          }
+                        ]
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "date_of_birth",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "date_of_birth",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "gender",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "gender",
+                        "location": "body"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/patient/:id": {
+        "get": {
+          "tags": [
+            "Patient"
+          ],
+          "summary": "Get Patient",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "215"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"d7-xxSrt52Ux+z3BfFRlUr4s0Sbmro\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Wed, 12 Apr 2023 17:39:47 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "patient": {
+                      "id": 4,
+                      "first_name": "Alice",
+                      "last_name": "Johnson",
+                      "address": "321 Elm Blvd",
+                      "email": "alicejohnson@mailinator.com",
+                      "phone": "555-3691",
+                      "date_of_birth": "1985-04-03T18:30:00.000Z",
+                      "gender": "F"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/prescription": {
+        "get": {
+          "tags": [
+            "Prescription"
+          ],
+          "summary": "Search Prescriptions",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "488"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"1e8-6grPtE70fK2Lpc2tdjTq6iVZ5AM\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Wed, 12 Apr 2023 17:51:05 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "prescriptions": [
+                      {
+                        "id": 1,
+                        "doctor_id": 1,
+                        "patient_id": 1,
+                        "description": null,
+                        "time": "2022-02-01T02:30:00.000Z"
+                      },
+                      {
+                        "id": 2,
+                        "doctor_id": 1,
+                        "patient_id": 2,
+                        "description": null,
+                        "time": "2022-02-02T03:30:00.000Z"
+                      },
+                      {
+                        "id": 3,
+                        "doctor_id": 2,
+                        "patient_id": 3,
+                        "description": null,
+                        "time": "2022-02-03T04:30:00.000Z"
+                      },
+                      {
+                        "id": 4,
+                        "doctor_id": 2,
+                        "patient_id": 4,
+                        "description": null,
+                        "time": "2022-02-04T05:30:00.000Z"
+                      },
+                      {
+                        "id": 5,
+                        "doctor_id": 3,
+                        "patient_id": 5,
+                        "description": null,
+                        "time": "2022-02-05T06:30:00.000Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/prescription/:id": {
+        "get": {
+          "tags": [
+            "Prescription"
+          ],
+          "summary": "Get Prescription",
+          "parameters": [
+            {
+              "name": "Accept",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              },
+              "example": "application/pdf"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "536"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"218-+7PXKHxRbap0vp5QYv2m01iIrZQ\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Wed, 12 Apr 2023 17:52:41 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "prescription": {
+                      "id": 1,
+                      "doctor_id": 1,
+                      "patient_id": 1,
+                      "description": null,
+                      "time": "2022-02-01T02:30:00.000Z",
+                      "medications": [
+                        {
+                          "id": 1,
+                          "medicine_id": 1,
+                          "prescription_id": 1,
+                          "dosage": "1 pill once a day",
+                          "quantity": 30,
+                          "start_date": "2022-01-31T18:30:00.000Z",
+                          "end_date": "2022-02-28T18:30:00.000Z",
+                          "refill_information": "3 refills"
+                        },
+                        {
+                          "id": 2,
+                          "medicine_id": 2,
+                          "prescription_id": 1,
+                          "dosage": "2 pills twice a day",
+                          "quantity": 60,
+                          "start_date": "2022-01-31T18:30:00.000Z",
+                          "end_date": "2022-02-13T18:30:00.000Z",
+                          "refill_information": "1 refill"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "50"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"32-z6SZaLS8Ph/HjBQ+H0sj0EN17SA\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Wed, 12 Apr 2023 17:52:58 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "No prescription found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/prescription/email/:id": {
+        "get": {
+          "tags": [
+            "Prescription"
+          ],
+          "summary": "Email Prescription",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "51"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"33-PIMWDAdN4uF5IIh9oeJ3kVj9pDg\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 17:07:12 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "message": "Email sent successfully"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/pharmacy/add-medicine": {
+        "post": {
+          "tags": [
+            "Pharmacy"
+          ],
+          "summary": "Add Medicine",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "pharmacy_id": 1,
+                    "medicine_id": 6
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "192"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"c0-sR5AHWZu1Bz8B1AlqmRZvjgFf6I\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 14:42:46 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "message": "Success",
+                    "data": {
+                      "id": 41,
+                      "pharmacy_id": 1,
+                      "medicine_id": 6,
+                      "quantity": 0,
+                      "price": "0.00",
+                      "created_at": "2023-04-15T14:42:46.226Z",
+                      "updated_at": "2023-04-15T14:42:46.226Z"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "180"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"b4-a+7oi7UlBTck1LN1PQlXYr6uBi0\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 14:39:15 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid input",
+                    "error": [
+                      {
+                        "msg": "Invalid value",
+                        "param": "medicine_id",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "medicine_id",
+                        "location": "body"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/pharmacy/list-medicine": {
+        "get": {
+          "tags": [
+            "Pharmacy"
+          ],
+          "summary": "List Medicines",
+          "parameters": [
+            {
+              "name": "pharmacy_id",
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "910"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"38e-3JDrUj4k7ESLnibMzW8IH9GipyU\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 14:42:29 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "message": "Success",
+                    "data": [
+                      {
+                        "id": 1,
+                        "medicine_id": 1,
+                        "name": "Aspirin",
+                        "description": "Used to relieve pain and reduce fever.",
+                        "manufacturer": "Bayer",
+                        "type": "tablet",
+                        "quantity": 50,
+                        "price": "10.00"
+                      },
+                      {
+                        "id": 2,
+                        "medicine_id": 2,
+                        "name": "Ibuprofen",
+                        "description": "Used to relieve pain, reduce fever and inflammation.",
+                        "manufacturer": "Advil",
+                        "type": "tablet",
+                        "quantity": 100,
+                        "price": "15.00"
+                      },
+                      {
+                        "id": 3,
+                        "medicine_id": 3,
+                        "name": "Acetaminophen",
+                        "description": "Used to relieve pain and reduce fever.",
+                        "manufacturer": "Tylenol",
+                        "type": "capsule",
+                        "quantity": 75,
+                        "price": "8.00"
+                      },
+                      {
+                        "id": 4,
+                        "medicine_id": 4,
+                        "name": "Amoxicillin",
+                        "description": "Used to treat bacterial infections.",
+                        "manufacturer": "Novartis",
+                        "type": "capsule",
+                        "quantity": 25,
+                        "price": "20.00"
+                      },
+                      {
+                        "id": 5,
+                        "medicine_id": 5,
+                        "name": "Ciprofloxacin",
+                        "description": "Used to treat bacterial infections.",
+                        "manufacturer": "Bayer",
+                        "type": "injection",
+                        "quantity": 200,
+                        "price": "5.00"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "182"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"b6-VQaEBl9k89hlkKpHHwgVMqUb6ws\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 14:43:15 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid input",
+                    "error": [
+                      {
+                        "msg": "Invalid value",
+                        "param": "pharmacy_id",
+                        "location": "query"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "pharmacy_id",
+                        "location": "query"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/pharmacy/update-stock": {
+        "patch": {
+          "tags": [
+            "Pharmacy"
+          ],
+          "summary": "Update Stock",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "id": 41,
+                    "quantity": 1000,
+                    "price": 12.26
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "196"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"c4-iYo52G3Uej3vpJejsM1gozZAPS8\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 14:46:51 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "message": "Success",
+                    "data": {
+                      "id": 41,
+                      "pharmacy_id": 1,
+                      "medicine_id": 6,
+                      "quantity": 1000,
+                      "price": "12.26",
+                      "created_at": "2023-04-15T14:42:46.226Z",
+                      "updated_at": "2023-04-15T14:46:51.824Z"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "400"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"190-/CVYwBIRm2yM7m1/bvrQk12f+xM\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 14:45:23 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid input",
+                    "error": [
+                      {
+                        "msg": "Invalid value",
+                        "param": "id",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "id",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "quantity",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "quantity",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "price",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "price",
+                        "location": "body"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/pharmacy/check-prescription": {
+        "post": {
+          "tags": [
+            "Pharmacy"
+          ],
+          "summary": "Check Prescription",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "pharmacy_id": 1,
+                    "prescription_id": 1
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "482"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"1e2-gKoVKJUvZxNC5SsPhgSlVbJ4418\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 14:58:46 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": true,
+                    "data": {
+                      "grand_total": 1200,
+                      "medicine_list": [
+                        {
+                          "stock_id": 1,
+                          "medicine_id": 1,
+                          "medication_id": 1,
+                          "name": "Aspirin",
+                          "description": "Used to relieve pain and reduce fever.",
+                          "required_quantity": 30,
+                          "available_quantity": 50,
+                          "price": "10.00",
+                          "total_price": 300
+                        },
+                        {
+                          "stock_id": 2,
+                          "medicine_id": 2,
+                          "medication_id": 2,
+                          "name": "Ibuprofen",
+                          "description": "Used to relieve pain, reduce fever and inflammation.",
+                          "required_quantity": 60,
+                          "available_quantity": 100,
+                          "price": "15.00",
+                          "total_price": 900
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "headers": {
+                "X-Powered-By": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Express"
+                  }
+                },
+                "Content-Type": {
+                  "schema": {
+                    "type": "string",
+                    "example": "application/json; charset=utf-8"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer",
+                    "example": "316"
+                  }
+                },
+                "ETag": {
+                  "schema": {
+                    "type": "string",
+                    "example": "W/\"13c-PzXWcca1HeyHRRAR2ljOB81quNk\""
+                  }
+                },
+                "Date": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Sat, 15 Apr 2023 14:48:42 GMT"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string",
+                    "example": "keep-alive"
+                  }
+                },
+                "Keep-Alive": {
+                  "schema": {
+                    "type": "string",
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": false,
+                    "message": "Invalid input",
+                    "error": [
+                      {
+                        "msg": "Invalid value",
+                        "param": "pharmacy_id",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "pharmacy_id",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "prescription_id",
+                        "location": "body"
+                      },
+                      {
+                        "msg": "Invalid value",
+                        "param": "prescription_id",
+                        "location": "body"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
